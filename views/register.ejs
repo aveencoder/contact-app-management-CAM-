@@ -1,0 +1,64 @@
+<%- include('partials/header.ejs') %>
+
+<div class="auth-wrapper">
+
+  <div class="auth-card">
+
+    <div class="auth-icon">
+      <i class="fa-solid fa-user-plus"></i>
+    </div>
+
+    <h2>Create Account</h2>
+
+    <p class="auth-subtitle">
+      Register to start managing contacts
+    </p>
+
+    <form method="POST" action="/register">
+
+      <div class="form-group">
+        <input
+          type="text"
+          name="name"
+          placeholder="Enter Name"
+          required
+          class="form-control auth-input"
+        />
+      </div>
+
+      <div class="form-group">
+        <input
+          type="email"
+          name="email"
+          placeholder="Enter Email"
+          required
+          class="form-control auth-input"
+        />
+      </div>
+
+      <div class="form-group">
+        <input
+          type="password"
+          name="password"
+          placeholder="Enter Password"
+          required
+          class="form-control auth-input"
+        />
+      </div>
+
+      <button type="submit" class="btn auth-btn">
+        Register
+      </button>
+
+    </form>
+
+    <p class="auth-switch">
+      Already have an account?
+      <a href="/login">Login</a>
+    </p>
+
+  </div>
+
+</div>
+
+<%- include('partials/footer.ejs') %>

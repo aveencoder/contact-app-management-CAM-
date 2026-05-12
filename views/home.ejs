@@ -1,0 +1,127 @@
+<%- include('partials/header.ejs') %>
+
+<main class="main-section">
+  <div class="container">
+    <div class="hero-box">
+      <div>
+        <h1>Manage Your Contacts Easily</h1>
+        <p>
+          Modern contact manager with clean UI, quick actions and responsive
+          layout.
+        </p>
+      </div>
+
+      <a href="/add-contact" class="btn hero-btn">
+        <i class="fa-solid fa-user-plus"></i>
+        Create Contact
+      </a>
+    </div>
+
+    <div class="contact-card">
+      <div class="table-header">
+        <div>
+          <h2>All Contacts</h2>
+          <span><%= totalDocs %> Total Contacts</span>
+        </div>
+      </div>
+
+      <div class="table-responsive">
+        <table class="table custom-table">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Name</th>
+              <th>Email</th>
+              <th>Phone</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <% var srno = counter %>
+            <% contacts.forEach(contact => { %>
+            <tr>
+              <td><%= srno++ %></td>
+
+              <td>
+                <div class="user-box">
+                  <div class="avatar">
+                    <%= contact.first_name.charAt(0) %>
+                  </div>
+
+                  <div>
+                    <strong>
+                      <%= contact.first_name %> <%= contact.last_name %>
+                    </strong>
+                  </div>
+                </div>
+              </td>
+
+              <td><%= contact.email %></td>
+              <td><%= contact.phone %></td>
+
+              <td>
+                <div class="action-buttons">
+                  <a
+                    href="/show-contact/<%= contact._id %>"
+                    class="action-btn view-btn"
+                  >
+                    <i class="fa-solid fa-eye"></i>
+                  </a>
+
+                  <a
+                    href="/update-contact/<%= contact._id %>"
+                    class="action-btn edit-btn"
+                  >
+                    <i class="fa-solid fa-pen"></i>
+                  </a>
+
+                  <a
+                    href="/delete-contact/<%= contact._id %>"
+                    class="action-btn delete-btn"
+                  >
+                    <i class="fa-solid fa-trash"></i>
+                  </a>
+                </div>
+              </td>
+            </tr>
+            <% }); %>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="pagination-box">
+        <ul class="pagination">
+          <% let disableClass = hasPrevPage ? '' : 'disabled' %>
+
+          <li class="page-item <%= disableClass %>">
+            <a class="page-link" href="/?page=<%= prevPage %>">
+              Previous
+            </a>
+          </li>
+
+          <% for(let i=1; i <= totalPages; i++){ %>
+          <% let activeClass = currentPage == i ? 'active' : '' %>
+
+          <li class="page-item <%= activeClass %>">
+            <a class="page-link" href="/?page=<%= i %>">
+              <%= i %>
+            </a>
+          </li>
+          <% } %>
+
+          <% let disableClass2 = hasNextPage ? '' : 'disabled' %>
+
+          <li class="page-item <%= disableClass2 %>">
+            <a class="page-link" href="/?page=<%= nextPage %>">
+              Next
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</main>
+
+<%- include('partials/footer.ejs') %>
+```
