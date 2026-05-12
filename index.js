@@ -10,8 +10,7 @@ app.use(cookieParser());
 import auth from "./middleware/auth.js";
 
 const JWT_SECRET = "contacthub_secret_key";
-const PORT = process.env.PORT;
-
+const PORT = process.env.PORT || 5000;
 // Database Connection
 connectDB();
 
