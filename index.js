@@ -102,10 +102,12 @@ const startServer = async () => {
     await connectDB();
 
     app.listen(PORT, () => {
-      console.log(`Server running on http://localhost:${PORT}`);
+      console.log(`Server running on ${PORT}`);
     });
+
   } catch (err) {
-    console.log("Startup error:", err);
+    console.log("❌ DB or Server error:", err);
+    process.exit(1);
   }
 };
 
