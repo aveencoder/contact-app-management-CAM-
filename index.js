@@ -12,7 +12,7 @@ import auth from "./middleware/auth.js";
 const JWT_SECRET = "contacthub_secret_key";
 const PORT = process.env.PORT || 5000;
 // Database Connection
-connectDB();
+//connectDB();
 
 // Middleware
 app.set("view engine", "ejs");
@@ -97,6 +97,16 @@ app.get("/logout", (req, res) => {
 // Routes
 app.use("/", ContactRoutes);
 
-app.listen(PORT, () => {
-  console.log(`Server started Successfully on port http://localhost:${PORT}.`);
-});
+const startServer = async () => {
+  try {
+    await connectDB();
+
+    app.listen(PORT, () => {
+      console.log(`Server running on http://localhost:${PORT}`);
+    });
+  } catch (err) {
+    console.log("Startup error:", err);
+  }
+};
+
+startServer();
